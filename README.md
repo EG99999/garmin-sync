@@ -81,6 +81,30 @@ change your Garmin password).
 If you don't have MFA enabled, skip this — plain `GARMIN_EMAIL`/`GARMIN_PASSWORD` login
 works on every scheduled run.
 
+## Manual trigger from another app (optional)
+
+Consumers (like dieta-app) can offer a "sync now" button that calls GitHub's API directly:
+
+```
+POST https://api.github.com/repos/<owner>/garmin-sync/actions/workflows/sync.yml/dispatches
+Authorization: Bearer <token>
+Content-Type: application/json
+
+{"ref": "main"}
+```
+
+This needs a token, and since the calling app may be a public static site, the token must be
+scoped as narrowly as possible:
+
+1. github.com → Settings → Developer settings → **Personal access tokens → Fine-grained tokens** → Generate new token
+2. **Repository access**: "Only select repositories" → `garmin-sync` (this repo only, nothing else)
+3. **Permissions**: under "Repository permissions", set **Actions** to **Read and write**. Leave every other permission at "No access" — in particular, do *not* grant Contents write, so this token can trigger runs but can't push code or read/change secrets.
+4. Generate, copy the token, paste it into the consuming app's own config yourself (never share it back through an assistant/agent) wherever that app expects it.
+
+Worst case if this token leaks: someone can spam-trigger the sync workflow. Annoying (risks
+Garmin login rate-limiting) but not a data or account compromise, given the restricted scope
+above.
+
 ## Known fragility
 
 This is a reverse-engineered API, not an official Garmin integration. It can break if
