@@ -1,0 +1,58 @@
+name: Sync Garmin activities
+
+on:
+  schedule:
+    - cron: "15 */3 * * *"   # every 3 hours
+  workflow_dispatch: {}       # manual re-run button
+
+permissions:
+  contents: write
+
+concurrency:
+  group: garmin-sync
+  cancel-in-progress: false
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - run: pip install -r requirements.txt
+
+      # Cache entries are immutable, so we rotate the key per run and always
+      # restore the most recent one via the prefix restore-key.
+      - name: Restore Garmin token cache
+        uses: actions/cache/restore@v4
+        with:
+          path: .garmin_tokens
+          key: garmin-tokens-${{ github.run_id }}
+          restore-keys: |
+            garmin-tokens-
+
+      - name: Run sync
+        env:
+          GARMIN_EMAIL: ${{ secrets.GARMIN_EMAIL }}
+          GARMIN_PASSWORD: ${{ secrets.GARMIN_PASSWORD }}
+          GARMIN_TOKENS_SEED_B64: ${{ secrets.GARMIN_TOKENS_SEED_B64 }}
+          GARMINTOKENS: ${{ github.workspace }}/.garmin_tokens
+        run: python scripts/sync_garmin.py
+
+      - name: Save Garmin token cache
+        if: always()
+        uses: actions/cache/save@v4
+        with:
+          path: .garmin_tokens
+          key: garmin-tokens-${{ github.run_id }}
+
+      - name: Commit updated feed
+        run: |
+          git config user.name "garmin-sync-bot"
+          git config user.email "actions@users.noreply.github.com"
+          git add docs/activities.json
+          git diff --cached --quiet || git commit -m "chore: update activities feed"
+          git push
