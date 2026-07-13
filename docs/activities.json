@@ -1,5 +1,206 @@
 {
-  "updatedAt": null,
+  "updatedAt": "2026-07-13T20:02:28Z",
   "windowDays": 14,
-  "activities": []
+  "activities": [
+    {
+      "garminId": "23583529706",
+      "date": "2026-07-13",
+      "startTimeLocal": "2026-07-13T17:14:47",
+      "type": "road_biking",
+      "eventType": "uncategorized",
+      "name": "Brescia Ciclismo su strada",
+      "durationMin": 49.8,
+      "calories": 592
+    },
+    {
+      "garminId": "23577563786",
+      "date": "2026-07-13",
+      "startTimeLocal": "2026-07-13T07:06:24",
+      "type": "road_biking",
+      "eventType": "uncategorized",
+      "name": "Chiari Ciclismo su strada",
+      "durationMin": 45.0,
+      "calories": 669
+    },
+    {
+      "garminId": "23550242531",
+      "date": "2026-07-10",
+      "startTimeLocal": "2026-07-10T19:04:39",
+      "type": "lap_swimming",
+      "eventType": "uncategorized",
+      "name": "Piscina",
+      "durationMin": 56.3,
+      "calories": 682
+    },
+    {
+      "garminId": "23549070034",
+      "date": "2026-07-10",
+      "startTimeLocal": "2026-07-10T17:15:23",
+      "type": "road_biking",
+      "eventType": "uncategorized",
+      "name": "Brescia Ciclismo su strada",
+      "durationMin": 48.3,
+      "calories": 570
+    },
+    {
+      "garminId": "23543330683",
+      "date": "2026-07-10",
+      "startTimeLocal": "2026-07-10T07:04:25",
+      "type": "road_biking",
+      "eventType": "uncategorized",
+      "name": "Chiari Ciclismo su strada",
+      "durationMin": 45.4,
+      "calories": 631
+    },
+    {
+      "garminId": "23537370168",
+      "date": "2026-07-09",
+      "startTimeLocal": "2026-07-09T17:16:14",
+      "type": "road_biking",
+      "eventType": "uncategorized",
+      "name": "Brescia Ciclismo su strada",
+      "durationMin": 45.9,
+      "calories": 613
+    },
+    {
+      "garminId": "23513989983",
+      "date": "2026-07-07",
+      "startTimeLocal": "2026-07-07T19:03:32",
+      "type": "lap_swimming",
+      "eventType": "uncategorized",
+      "name": "Piscina",
+      "durationMin": 58.1,
+      "calories": 655
+    },
+    {
+      "garminId": "23501062498",
+      "date": "2026-07-06",
+      "startTimeLocal": "2026-07-06T19:06:29",
+      "type": "yoga",
+      "eventType": "uncategorized",
+      "name": "Yoga",
+      "durationMin": 5.9,
+      "calories": 11
+    },
+    {
+      "garminId": "23500969125",
+      "date": "2026-07-06",
+      "startTimeLocal": "2026-07-06T18:34:37",
+      "type": "pilates",
+      "eventType": "uncategorized",
+      "name": "Pilates",
+      "durationMin": 29.4,
+      "calories": 101
+    },
+    {
+      "garminId": "23484627513",
+      "date": "2026-07-05",
+      "startTimeLocal": "2026-07-05T07:12:22",
+      "type": "road_biking",
+      "eventType": "uncategorized",
+      "name": "Chiari Ciclismo su strada",
+      "durationMin": 174.3,
+      "calories": 2463
+    },
+    {
+      "garminId": "23480668282",
+      "date": "2026-07-04",
+      "startTimeLocal": "2026-07-04T21:34:14",
+      "type": "yoga",
+      "eventType": "uncategorized",
+      "name": "Yoga",
+      "durationMin": 6.6,
+      "calories": 11
+    },
+    {
+      "garminId": "23480613496",
+      "date": "2026-07-04",
+      "startTimeLocal": "2026-07-04T20:58:24",
+      "type": "pilates",
+      "eventType": "uncategorized",
+      "name": "Pilates",
+      "durationMin": 34.1,
+      "calories": 108
+    },
+    {
+      "garminId": "23467936680",
+      "date": "2026-07-03",
+      "startTimeLocal": "2026-07-03T19:03:56",
+      "type": "lap_swimming",
+      "eventType": "uncategorized",
+      "name": "Piscina",
+      "durationMin": 48.9,
+      "calories": 697
+    },
+    {
+      "garminId": "23466737003",
+      "date": "2026-07-03",
+      "startTimeLocal": "2026-07-03T17:12:06",
+      "type": "road_biking",
+      "eventType": "uncategorized",
+      "name": "Brescia Ciclismo su strada",
+      "durationMin": 50.0,
+      "calories": 581
+    },
+    {
+      "garminId": "23461067053",
+      "date": "2026-07-03",
+      "startTimeLocal": "2026-07-03T07:04:33",
+      "type": "road_biking",
+      "eventType": "uncategorized",
+      "name": "Chiari Ciclismo su strada",
+      "durationMin": 47.7,
+      "calories": 677
+    },
+    {
+      "garminId": "23443682314",
+      "date": "2026-07-01",
+      "startTimeLocal": "2026-07-01T17:09:09",
+      "type": "road_biking",
+      "eventType": "uncategorized",
+      "name": "Brescia Ciclismo su strada",
+      "durationMin": 48.6,
+      "calories": 710
+    },
+    {
+      "garminId": "23437932096",
+      "date": "2026-07-01",
+      "startTimeLocal": "2026-07-01T06:59:09",
+      "type": "road_biking",
+      "eventType": "uncategorized",
+      "name": "Chiari Ciclismo su strada",
+      "durationMin": 46.7,
+      "calories": 632
+    },
+    {
+      "garminId": "23433197385",
+      "date": "2026-06-30",
+      "startTimeLocal": "2026-06-30T19:03:21",
+      "type": "lap_swimming",
+      "eventType": "uncategorized",
+      "name": "Piscina",
+      "durationMin": 59.3,
+      "calories": 751
+    },
+    {
+      "garminId": "23419642136",
+      "date": "2026-06-29",
+      "startTimeLocal": "2026-06-29T17:12:34",
+      "type": "road_biking",
+      "eventType": "uncategorized",
+      "name": "Brescia Ciclismo su strada",
+      "durationMin": 51.6,
+      "calories": 607
+    },
+    {
+      "garminId": "23414099558",
+      "date": "2026-06-29",
+      "startTimeLocal": "2026-06-29T07:06:06",
+      "type": "road_biking",
+      "eventType": "uncategorized",
+      "name": "Chiari Ciclismo su strada",
+      "durationMin": 45.6,
+      "calories": 540
+    }
+  ]
 }
