@@ -2,3 +2,6 @@
 __pycache__/
 *.pyc
 .venv/
+.venv_test/
+onedrive_token_cache.bin
+.ms_graph_token/

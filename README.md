@@ -37,6 +37,14 @@ Python client instead, which logs in the same way the Garmin mobile app does.
 can apply its own mapping. Nothing sensitive is published: no location, no account info,
 no tokens.
 
+### Health metrics (private, not on this feed)
+
+Sleep, HRV, resting heart rate, stress, VO2max/training status, body composition, SpO2,
+respiration, floors, hydration, and step/Body Battery detail are collected too, but — unlike
+activities — these are meaningfully sensitive, so they are **not** published here. They go
+straight to a private file on your own OneDrive (`GarminHealth-feed.json`), uploaded by the
+workflow, never committed to this repo. See "Private health metrics setup" below.
+
 ## Setup
 
 1. **Repo secrets** (Settings → Secrets and variables → Actions), set by you — this repo's
@@ -80,6 +88,46 @@ change your Garmin password).
 
 If you don't have MFA enabled, skip this — plain `GARMIN_EMAIL`/`GARMIN_PASSWORD` login
 works on every scheduled run.
+
+## Private health metrics setup (optional)
+
+Skip this section entirely if you only want the public activities feed — everything above
+already works standalone. This section adds the private OneDrive upload of sleep/HRV/stress/
+etc. It's optional and fails silently (a log warning, nothing breaks) if not configured.
+
+1. **Register a new, separate Azure AD app** — deliberately not reusing any existing app
+   registration, so nothing here can affect other apps' sign-in. Go to
+   [portal.azure.com](https://portal.azure.com) → App registrations → New registration:
+   - Name: anything, e.g. `garmin-sync-onedrive`
+   - Supported account types: **Personal Microsoft accounts only**
+   - Redirect URI: leave blank
+   - After creation: **Authentication** (left sidebar) → **Add a platform** → **Mobile and
+     desktop applications** → check the default redirect URI checkbox → Configure. Then under
+     **Advanced settings** on the same page, set **"Allow public client flows"** to **Yes** →
+     Save. This is required for the device-code login below.
+   - Copy the **Application (client) ID** from the app's Overview page — this is a public
+     identifier, not a secret.
+
+2. **One-time interactive login**, from your own machine (not CI):
+   ```bash
+   pip install msal
+   python scripts/onedrive_seed_login.py <application-client-id>
+   ```
+   It prints a URL and a short code. Open the URL in any browser, sign in with the Microsoft
+   account you want (the one dieta-app already uses), enter the code. On success it writes
+   `onedrive_token_cache.bin` in your current directory and prints base64-encoding commands
+   for it.
+
+3. **Repo config** (Settings → Secrets and variables → Actions):
+   - Under **Variables** tab: `MS_GRAPH_CLIENT_ID` = the Application (client) ID from step 1
+     (not sensitive, safe as a plain variable)
+   - Under **Secrets** tab: `MS_GRAPH_TOKEN_CACHE_SEED_B64` = the base64 output from step 2
+
+That's it — the workflow picks these up automatically next run. Like the Garmin session, this
+refreshes itself silently afterward; you shouldn't need to redo the interactive login unless
+the session gets revoked (password change, or the job not running successfully for a stretch —
+Microsoft expires an unused public-client refresh token after ~24h of inactivity, well outside
+this job's normal 3h schedule).
 
 ## Manual trigger from another app (optional)
 

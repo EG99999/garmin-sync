@@ -1,2 +1,4 @@
 garminconnect
 curl_cffi
+msal
+requests
