@@ -34,12 +34,25 @@ jobs:
           restore-keys: |
             garmin-tokens-
 
+      # Same rotating-key pattern, for the Microsoft Graph (OneDrive) session used
+      # only to upload the private health-metrics feed — see onedrive_seed_login.py.
+      - name: Restore Microsoft Graph token cache
+        uses: actions/cache/restore@v4
+        with:
+          path: .ms_graph_token
+          key: ms-graph-token-${{ github.run_id }}
+          restore-keys: |
+            ms-graph-token-
+
       - name: Run sync
         env:
           GARMIN_EMAIL: ${{ secrets.GARMIN_EMAIL }}
           GARMIN_PASSWORD: ${{ secrets.GARMIN_PASSWORD }}
           GARMIN_TOKENS_SEED_B64: ${{ secrets.GARMIN_TOKENS_SEED_B64 }}
           GARMINTOKENS: ${{ github.workspace }}/.garmin_tokens
+          MS_GRAPH_CLIENT_ID: ${{ vars.MS_GRAPH_CLIENT_ID }}
+          MS_GRAPH_TOKEN_CACHE_SEED_B64: ${{ secrets.MS_GRAPH_TOKEN_CACHE_SEED_B64 }}
+          MS_GRAPH_TOKEN_CACHE_PATH: ${{ github.workspace }}/.ms_graph_token/cache.bin
         run: python scripts/sync_garmin.py
 
       - name: Save Garmin token cache
@@ -48,6 +61,13 @@ jobs:
         with:
           path: .garmin_tokens
           key: garmin-tokens-${{ github.run_id }}
+
+      - name: Save Microsoft Graph token cache
+        if: always()
+        uses: actions/cache/save@v4
+        with:
+          path: .ms_graph_token
+          key: ms-graph-token-${{ github.run_id }}
 
       - name: Commit updated feed
         run: |
