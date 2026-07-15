@@ -1,7 +1,17 @@
 {
-  "updatedAt": "2026-07-15T11:01:16Z",
+  "updatedAt": "2026-07-15T14:06:23Z",
   "windowDays": 14,
   "activities": [
+    {
+      "garminId": "23605702909",
+      "date": "2026-07-15",
+      "startTimeLocal": "2026-07-15T07:12:13",
+      "type": "road_biking",
+      "eventType": "uncategorized",
+      "name": "Bellaria-Igea Marina Ciclismo su strada",
+      "durationMin": 313.4,
+      "calories": 3673
+    },
     {
       "garminId": "23583529706",
       "date": "2026-07-13",
