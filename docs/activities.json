@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-07-18T22:03:37Z",
+  "updatedAt": "2026-07-19T03:48:11Z",
   "windowDays": 14,
   "activities": [
     {
@@ -121,26 +121,6 @@
       "name": "Chiari Ciclismo su strada",
       "durationMin": 174.3,
       "calories": 2463
-    },
-    {
-      "garminId": "23480668282",
-      "date": "2026-07-04",
-      "startTimeLocal": "2026-07-04T21:34:14",
-      "type": "yoga",
-      "eventType": "uncategorized",
-      "name": "Yoga",
-      "durationMin": 6.6,
-      "calories": 11
-    },
-    {
-      "garminId": "23480613496",
-      "date": "2026-07-04",
-      "startTimeLocal": "2026-07-04T20:58:24",
-      "type": "pilates",
-      "eventType": "uncategorized",
-      "name": "Pilates",
-      "durationMin": 34.1,
-      "calories": 108
     }
   ]
 }
