@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-07-19T22:06:06Z",
+  "updatedAt": "2026-07-20T03:59:22Z",
   "windowDays": 14,
   "activities": [
     {
@@ -121,16 +121,6 @@
       "name": "Pilates",
       "durationMin": 29.4,
       "calories": 101
-    },
-    {
-      "garminId": "23484627513",
-      "date": "2026-07-05",
-      "startTimeLocal": "2026-07-05T07:12:22",
-      "type": "road_biking",
-      "eventType": "uncategorized",
-      "name": "Chiari Ciclismo su strada",
-      "durationMin": 174.3,
-      "calories": 2463
     }
   ]
 }
