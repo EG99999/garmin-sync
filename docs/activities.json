@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-07-20T22:11:03Z",
+  "updatedAt": "2026-07-21T03:39:40Z",
   "windowDays": 14,
   "activities": [
     {
@@ -101,26 +101,6 @@
       "name": "Piscina",
       "durationMin": 58.1,
       "calories": 655
-    },
-    {
-      "garminId": "23501062498",
-      "date": "2026-07-06",
-      "startTimeLocal": "2026-07-06T19:06:29",
-      "type": "yoga",
-      "eventType": "uncategorized",
-      "name": "Yoga",
-      "durationMin": 5.9,
-      "calories": 11
-    },
-    {
-      "garminId": "23500969125",
-      "date": "2026-07-06",
-      "startTimeLocal": "2026-07-06T18:34:37",
-      "type": "pilates",
-      "eventType": "uncategorized",
-      "name": "Pilates",
-      "durationMin": 29.4,
-      "calories": 101
     }
   ]
 }
