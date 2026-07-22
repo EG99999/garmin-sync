@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-07-21T22:10:54Z",
+  "updatedAt": "2026-07-22T03:40:02Z",
   "windowDays": 14,
   "activities": [
     {
@@ -91,16 +91,6 @@
       "name": "Brescia Ciclismo su strada",
       "durationMin": 45.9,
       "calories": 613
-    },
-    {
-      "garminId": "23513989983",
-      "date": "2026-07-07",
-      "startTimeLocal": "2026-07-07T19:03:32",
-      "type": "lap_swimming",
-      "eventType": "uncategorized",
-      "name": "Piscina",
-      "durationMin": 58.1,
-      "calories": 655
     }
   ]
 }
