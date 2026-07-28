@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-07-27T22:15:35Z",
+  "updatedAt": "2026-07-28T03:30:44Z",
   "windowDays": 14,
   "activities": [
     {
@@ -101,26 +101,6 @@
       "name": "Bellaria-Igea Marina Ciclismo su strada",
       "durationMin": 313.4,
       "calories": 3673
-    },
-    {
-      "garminId": "23583529706",
-      "date": "2026-07-13",
-      "startTimeLocal": "2026-07-13T17:14:47",
-      "type": "road_biking",
-      "eventType": "uncategorized",
-      "name": "Brescia Ciclismo su strada",
-      "durationMin": 49.8,
-      "calories": 592
-    },
-    {
-      "garminId": "23577563786",
-      "date": "2026-07-13",
-      "startTimeLocal": "2026-07-13T07:06:24",
-      "type": "road_biking",
-      "eventType": "uncategorized",
-      "name": "Chiari Ciclismo su strada",
-      "durationMin": 45.0,
-      "calories": 669
     }
   ]
 }
