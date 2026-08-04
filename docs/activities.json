@@ -1,7 +1,17 @@
 {
-  "updatedAt": "2026-08-04T17:00:40Z",
+  "updatedAt": "2026-08-04T19:53:12Z",
   "windowDays": 14,
   "activities": [
+    {
+      "garminId": "23851829032",
+      "date": "2026-08-04",
+      "startTimeLocal": "2026-08-04T18:41:09",
+      "type": "pilates",
+      "eventType": "uncategorized",
+      "name": "Pilates",
+      "durationMin": 33.7,
+      "calories": 114
+    },
     {
       "garminId": "23837863756",
       "date": "2026-08-03",
