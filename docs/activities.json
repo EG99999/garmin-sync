@@ -1,7 +1,17 @@
 {
-  "updatedAt": "2026-08-14T16:02:43Z",
+  "updatedAt": "2026-08-14T19:10:09Z",
   "windowDays": 14,
   "activities": [
+    {
+      "garminId": "23976329434",
+      "date": "2026-08-14",
+      "startTimeLocal": "2026-08-14T17:19:40",
+      "type": "road_biking",
+      "eventType": "uncategorized",
+      "name": "Brescia Ciclismo su strada",
+      "durationMin": 49.4,
+      "calories": 536
+    },
     {
       "garminId": "23970305548",
       "date": "2026-08-14",
