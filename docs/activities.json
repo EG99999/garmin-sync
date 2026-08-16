@@ -1,7 +1,17 @@
 {
-  "updatedAt": "2026-08-16T06:56:09Z",
+  "updatedAt": "2026-08-16T09:37:16Z",
   "windowDays": 14,
   "activities": [
+    {
+      "garminId": "23994770916",
+      "date": "2026-08-16",
+      "startTimeLocal": "2026-08-16T07:16:07",
+      "type": "road_biking",
+      "eventType": "uncategorized",
+      "name": "Giro del lago d'Iseo- NO stop & NO draft",
+      "durationMin": 181.9,
+      "calories": 2824
+    },
     {
       "garminId": "23976329434",
       "date": "2026-08-14",
