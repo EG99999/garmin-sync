@@ -1,7 +1,17 @@
 {
-  "updatedAt": "2026-08-20T09:47:29Z",
+  "updatedAt": "2026-08-20T13:08:12Z",
   "windowDays": 14,
   "activities": [
+    {
+      "garminId": "24046467565",
+      "date": "2026-08-20",
+      "startTimeLocal": "2026-08-20T08:11:50",
+      "type": "hiking",
+      "eventType": "uncategorized",
+      "name": "San Lorenzo di Sebato Escursionismo",
+      "durationMin": 160.8,
+      "calories": 916
+    },
     {
       "garminId": "23994770916",
       "date": "2026-08-16",
