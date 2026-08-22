@@ -1,7 +1,17 @@
 {
-  "updatedAt": "2026-08-22T09:37:38Z",
+  "updatedAt": "2026-08-22T12:57:40Z",
   "windowDays": 14,
   "activities": [
+    {
+      "garminId": "24071775676",
+      "date": "2026-08-22",
+      "startTimeLocal": "2026-08-22T12:44:37",
+      "type": "hiking",
+      "eventType": "uncategorized",
+      "name": "Marebbe Escursionismo",
+      "durationMin": 64.4,
+      "calories": 359
+    },
     {
       "garminId": "24069529432",
       "date": "2026-08-22",
