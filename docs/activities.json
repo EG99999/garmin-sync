@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-08-24T21:40:58Z",
+  "updatedAt": "2026-08-25T01:49:22Z",
   "windowDays": 14,
   "activities": [
     {
@@ -111,26 +111,6 @@
       "name": "Marone Nuoto in acque libere",
       "durationMin": 44.4,
       "calories": 602
-    },
-    {
-      "garminId": "23924898793",
-      "date": "2026-08-10",
-      "startTimeLocal": "2026-08-10T17:13:45",
-      "type": "road_biking",
-      "eventType": "uncategorized",
-      "name": "Brescia Ciclismo su strada",
-      "durationMin": 54.6,
-      "calories": 651
-    },
-    {
-      "garminId": "23918668901",
-      "date": "2026-08-10",
-      "startTimeLocal": "2026-08-10T07:03:27",
-      "type": "road_biking",
-      "eventType": "uncategorized",
-      "name": "Chiari Ciclismo su strada",
-      "durationMin": 45.5,
-      "calories": 631
     }
   ]
 }
