@@ -1,7 +1,17 @@
 {
-  "updatedAt": "2026-08-25T15:55:51Z",
+  "updatedAt": "2026-08-25T18:54:08Z",
   "windowDays": 14,
   "activities": [
+    {
+      "garminId": "24113238404",
+      "date": "2026-08-25",
+      "startTimeLocal": "2026-08-25T18:24:57",
+      "type": "lap_swimming",
+      "eventType": "uncategorized",
+      "name": "Piscina",
+      "durationMin": 57.0,
+      "calories": 759
+    },
     {
       "garminId": "24108531446",
       "date": "2026-08-25",
