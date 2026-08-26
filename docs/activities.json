@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-08-25T21:39:41Z",
+  "updatedAt": "2026-08-26T01:55:31Z",
   "windowDays": 14,
   "activities": [
     {
@@ -121,16 +121,6 @@
       "name": "Chiari Ciclismo su strada",
       "durationMin": 47.8,
       "calories": 614
-    },
-    {
-      "garminId": "23939424538",
-      "date": "2026-08-11",
-      "startTimeLocal": "2026-08-11T18:50:25",
-      "type": "open_water_swimming",
-      "eventType": "uncategorized",
-      "name": "Marone Nuoto in acque libere",
-      "durationMin": 44.4,
-      "calories": 602
     }
   ]
 }
