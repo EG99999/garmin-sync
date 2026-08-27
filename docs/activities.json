@@ -1,7 +1,17 @@
 {
-  "updatedAt": "2026-08-27T00:45:37Z",
+  "updatedAt": "2026-08-27T14:05:41Z",
   "windowDays": 14,
   "activities": [
+    {
+      "garminId": "24134825971",
+      "date": "2026-08-27",
+      "startTimeLocal": "2026-08-27T12:35:44",
+      "type": "running",
+      "eventType": "uncategorized",
+      "name": "Brescia - Run-Walk 10x(1+2)",
+      "durationMin": 36.4,
+      "calories": 436
+    },
     {
       "garminId": "24125493291",
       "date": "2026-08-26",
