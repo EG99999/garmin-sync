@@ -1,7 +1,17 @@
 {
-  "updatedAt": "2026-08-29T01:43:44Z",
+  "updatedAt": "2026-08-29T09:59:07Z",
   "windowDays": 14,
   "activities": [
+    {
+      "garminId": "24157071996",
+      "date": "2026-08-29",
+      "startTimeLocal": "2026-08-29T10:20:28",
+      "type": "running",
+      "eventType": "uncategorized",
+      "name": "Chiari - Run-Walk 10x(1+2)",
+      "durationMin": 40.0,
+      "calories": 322
+    },
     {
       "garminId": "24134825971",
       "date": "2026-08-27",
