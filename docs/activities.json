@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-08-28T15:16:45Z",
+  "updatedAt": "2026-08-29T01:43:44Z",
   "windowDays": 14,
   "activities": [
     {
@@ -111,26 +111,6 @@
       "name": "Giro del lago d'Iseo- NO stop & NO draft",
       "durationMin": 181.9,
       "calories": 2824
-    },
-    {
-      "garminId": "23976329434",
-      "date": "2026-08-14",
-      "startTimeLocal": "2026-08-14T17:19:40",
-      "type": "road_biking",
-      "eventType": "uncategorized",
-      "name": "Brescia Ciclismo su strada",
-      "durationMin": 49.4,
-      "calories": 536
-    },
-    {
-      "garminId": "23970305548",
-      "date": "2026-08-14",
-      "startTimeLocal": "2026-08-14T07:03:08",
-      "type": "road_biking",
-      "eventType": "uncategorized",
-      "name": "Chiari Ciclismo su strada",
-      "durationMin": 45.3,
-      "calories": 658
     }
   ]
 }
