@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-08-30T23:26:53Z",
+  "updatedAt": "2026-08-31T05:26:28Z",
   "windowDays": 14,
   "activities": [
     {
@@ -121,16 +121,6 @@
       "name": "San Lorenzo di Sebato Escursionismo",
       "durationMin": 160.8,
       "calories": 916
-    },
-    {
-      "garminId": "23994770916",
-      "date": "2026-08-16",
-      "startTimeLocal": "2026-08-16T07:16:07",
-      "type": "road_biking",
-      "eventType": "uncategorized",
-      "name": "Giro del lago d'Iseo- NO stop & NO draft",
-      "durationMin": 181.9,
-      "calories": 2824
     }
   ]
 }
