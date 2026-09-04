@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-09-03T23:14:56Z",
+  "updatedAt": "2026-09-04T04:24:24Z",
   "windowDays": 14,
   "activities": [
     {
@@ -161,16 +161,6 @@
       "name": "Marebbe Escursionismo",
       "durationMin": 104.6,
       "calories": 872
-    },
-    {
-      "garminId": "24046467565",
-      "date": "2026-08-20",
-      "startTimeLocal": "2026-08-20T08:11:50",
-      "type": "hiking",
-      "eventType": "uncategorized",
-      "name": "San Lorenzo di Sebato Escursionismo",
-      "durationMin": 160.8,
-      "calories": 916
     }
   ]
 }
