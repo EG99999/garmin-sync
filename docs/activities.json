@@ -1,7 +1,17 @@
 {
-  "updatedAt": "2026-09-08T11:11:38Z",
+  "updatedAt": "2026-09-08T16:34:41Z",
   "windowDays": 14,
   "activities": [
+    {
+      "garminId": "24282628703",
+      "date": "2026-09-08",
+      "startTimeLocal": "2026-09-08T13:09:20",
+      "type": "running",
+      "eventType": "uncategorized",
+      "name": "Brescia Corsa",
+      "durationMin": 29.9,
+      "calories": 513
+    },
     {
       "garminId": "24276374794",
       "date": "2026-09-07",
