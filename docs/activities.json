@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-09-08T23:21:07Z",
+  "updatedAt": "2026-09-09T04:34:33Z",
   "windowDays": 14,
   "activities": [
     {
@@ -161,26 +161,6 @@
       "name": "Chiari Ciclismo su strada",
       "durationMin": 48.5,
       "calories": 665
-    },
-    {
-      "garminId": "24113238404",
-      "date": "2026-08-25",
-      "startTimeLocal": "2026-08-25T18:24:57",
-      "type": "lap_swimming",
-      "eventType": "uncategorized",
-      "name": "Piscina",
-      "durationMin": 57.0,
-      "calories": 759
-    },
-    {
-      "garminId": "24108531446",
-      "date": "2026-08-25",
-      "startTimeLocal": "2026-08-25T12:45:43",
-      "type": "running",
-      "eventType": "uncategorized",
-      "name": "Brescia - Run-Walk 10x(1+2)",
-      "durationMin": 35.0,
-      "calories": 364
     }
   ]
 }
