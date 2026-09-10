@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-09-09T23:12:01Z",
+  "updatedAt": "2026-09-10T04:34:20Z",
   "windowDays": 14,
   "activities": [
     {
@@ -141,26 +141,6 @@
       "name": "Brescia - Run-Walk 10x(1+2)",
       "durationMin": 36.4,
       "calories": 436
-    },
-    {
-      "garminId": "24125493291",
-      "date": "2026-08-26",
-      "startTimeLocal": "2026-08-26T17:15:24",
-      "type": "road_biking",
-      "eventType": "uncategorized",
-      "name": "Brescia Ciclismo su strada",
-      "durationMin": 51.5,
-      "calories": 609
-    },
-    {
-      "garminId": "24118969719",
-      "date": "2026-08-26",
-      "startTimeLocal": "2026-08-26T07:04:53",
-      "type": "road_biking",
-      "eventType": "uncategorized",
-      "name": "Chiari Ciclismo su strada",
-      "durationMin": 48.5,
-      "calories": 665
     }
   ]
 }
