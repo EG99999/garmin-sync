@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-09-10T23:07:34Z",
+  "updatedAt": "2026-09-11T04:32:00Z",
   "windowDays": 14,
   "activities": [
     {
@@ -151,16 +151,6 @@
       "name": "Chiari - Run-Walk 10x(1+2)",
       "durationMin": 40.0,
       "calories": 322
-    },
-    {
-      "garminId": "24134825971",
-      "date": "2026-08-27",
-      "startTimeLocal": "2026-08-27T12:35:44",
-      "type": "running",
-      "eventType": "uncategorized",
-      "name": "Brescia - Run-Walk 10x(1+2)",
-      "durationMin": 36.4,
-      "calories": 436
     }
   ]
 }
