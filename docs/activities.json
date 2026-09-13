@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-09-12T23:01:01Z",
+  "updatedAt": "2026-09-13T04:40:35Z",
   "windowDays": 14,
   "activities": [
     {
@@ -161,16 +161,6 @@
       "name": "Chiari Ciclismo su strada",
       "durationMin": 235.3,
       "calories": 2953
-    },
-    {
-      "garminId": "24157071996",
-      "date": "2026-08-29",
-      "startTimeLocal": "2026-08-29T10:20:28",
-      "type": "running",
-      "eventType": "uncategorized",
-      "name": "Chiari - Run-Walk 10x(1+2)",
-      "durationMin": 40.0,
-      "calories": 322
     }
   ]
 }
