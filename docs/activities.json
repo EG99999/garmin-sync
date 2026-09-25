@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-09-24T21:27:36Z",
+  "updatedAt": "2026-09-25T04:50:53Z",
   "windowDays": 14,
   "activities": [
     {
@@ -191,26 +191,6 @@
       "name": "Chiari Ciclismo su strada",
       "durationMin": 47.1,
       "calories": 640
-    },
-    {
-      "garminId": "24315254534",
-      "date": "2026-09-10",
-      "startTimeLocal": "2026-09-10T21:02:52",
-      "type": "lap_swimming",
-      "eventType": "uncategorized",
-      "name": "Piscina",
-      "durationMin": 61.3,
-      "calories": 661
-    },
-    {
-      "garminId": "24313231403",
-      "date": "2026-09-10",
-      "startTimeLocal": "2026-09-10T20:04:50",
-      "type": "running",
-      "eventType": "uncategorized",
-      "name": "Chiari Corsa",
-      "durationMin": 20.0,
-      "calories": 312
     }
   ]
 }
