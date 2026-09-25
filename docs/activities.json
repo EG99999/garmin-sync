@@ -1,7 +1,17 @@
 {
-  "updatedAt": "2026-09-25T04:50:53Z",
+  "updatedAt": "2026-09-25T11:44:52Z",
   "windowDays": 14,
   "activities": [
+    {
+      "garminId": "24489594751",
+      "date": "2026-09-25",
+      "startTimeLocal": "2026-09-25T07:04:35",
+      "type": "road_biking",
+      "eventType": "uncategorized",
+      "name": "Chiari Ciclismo su strada",
+      "durationMin": 48.3,
+      "calories": 651
+    },
     {
       "garminId": "24483641519",
       "date": "2026-09-24",
