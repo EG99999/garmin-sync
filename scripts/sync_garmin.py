@@ -84,41 +84,91 @@ def fail_on_mfa():
     )
 
 
+def _num(v, ndigits=None):
+    """Defensive numeric passthrough: Garmin omits fields per activity type/device
+    (e.g. no power without a power meter), so every field here is optional."""
+    if v is None:
+        return None
+    try:
+        v = float(v)
+    except (TypeError, ValueError):
+        return None
+    return round(v, ndigits) if ndigits is not None else round(v)
+
+
+def _extract_activity(a):
+    activity_type = a.get("activityType") or {}
+    event_type = a.get("eventType")  # unverified field name, pass through if present
+    start_local = a.get("startTimeLocal")  # "YYYY-MM-DD HH:MM:SS"
+    if not start_local:
+        return None
+    iso_local = start_local.replace(" ", "T")
+
+    avg_speed = a.get("averageSpeed")  # m/s
+    max_speed = a.get("maxSpeed")
+
+    return {
+        "garminId": str(a.get("activityId")),
+        "date": iso_local[:10],
+        "startTimeLocal": iso_local,
+        "type": activity_type.get("typeKey", "unknown"),
+        "eventType": (event_type or {}).get("typeKey") if isinstance(event_type, dict) else None,
+        "name": a.get("activityName"),
+        "durationMin": round((a.get("duration") or 0) / 60, 1),
+        "calories": round(a.get("calories") or 0),
+        # Richer per-activity stats — all optional, vary by sport/device.
+        "distanceKm": _num((a.get("distance") or 0) / 1000, 2) if a.get("distance") else None,
+        "avgHr": _num(a.get("averageHR")),
+        "maxHr": _num(a.get("maxHR")),
+        "avgSpeedKmh": _num(avg_speed * 3.6, 1) if avg_speed else None,
+        "maxSpeedKmh": _num(max_speed * 3.6, 1) if max_speed else None,
+        "elevationGainM": _num(a.get("elevationGain")),
+        "elevationLossM": _num(a.get("elevationLoss")),
+        "aerobicTrainingEffect": _num(a.get("aerobicTrainingEffect"), 1),
+        "anaerobicTrainingEffect": _num(a.get("anaerobicTrainingEffect"), 1),
+        "trainingLoad": _num(a.get("activityTrainingLoad")),
+        "avgPowerW": _num(a.get("avgPower")),
+        "maxPowerW": _num(a.get("maxPower")),
+        "avgCadence": _num(a.get("averageRunningCadenceInStepsPerMinute")),
+        "maxCadence": _num(a.get("maxRunningCadenceInStepsPerMinute")),
+        "steps": _num(a.get("steps")),
+    }
+
+
 def sync_activities(client):
     start_date = (date.today() - timedelta(days=WINDOW_DAYS)).isoformat()
     end_date = date.today().isoformat()
 
     raw_activities = client.get_activities_by_date(start_date, end_date, sortorder="desc")
+    fresh = [x for x in (_extract_activity(a) for a in raw_activities) if x]
 
-    activities = []
-    for a in raw_activities:
-        activity_type = a.get("activityType") or {}
-        event_type = a.get("eventType")  # unverified field name, pass through if present
-        start_local = a.get("startTimeLocal")  # "YYYY-MM-DD HH:MM:SS"
-        if not start_local:
-            continue
-        iso_local = start_local.replace(" ", "T")
+    # Accumulate full history instead of overwriting: merge this run's window
+    # (which also re-fetches/corrects the last WINDOW_DAYS) on top of whatever
+    # is already published, keyed by garminId — same pattern as the health feed's
+    # merge_range_metric_into_days, just keyed by activity instead of by day.
+    by_id = {}
+    if ACTIVITIES_PATH.exists():
+        try:
+            existing = json.loads(ACTIVITIES_PATH.read_text(encoding="utf-8")).get("activities", [])
+            for a in existing:
+                if a.get("garminId"):
+                    by_id[a["garminId"]] = a
+        except Exception as e:
+            print(f"::warning::Could not read existing {ACTIVITIES_PATH}, starting fresh: {e}", file=sys.stderr)
+    for a in fresh:
+        by_id[a["garminId"]] = a
 
-        activities.append({
-            "garminId": str(a.get("activityId")),
-            "date": iso_local[:10],
-            "startTimeLocal": iso_local,
-            "type": activity_type.get("typeKey", "unknown"),
-            "eventType": (event_type or {}).get("typeKey") if isinstance(event_type, dict) else None,
-            "name": a.get("activityName"),
-            "durationMin": round((a.get("duration") or 0) / 60, 1),
-            "calories": round(a.get("calories") or 0),
-        })
+    activities = sorted(by_id.values(), key=lambda a: a["startTimeLocal"], reverse=True)
 
     payload = {
         "updatedAt": datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"),
-        "windowDays": WINDOW_DAYS,
+        "fetchWindowDays": WINDOW_DAYS,
         "activities": activities,
     }
 
     ACTIVITIES_PATH.parent.mkdir(parents=True, exist_ok=True)
     ACTIVITIES_PATH.write_text(json.dumps(payload, indent=2, ensure_ascii=False), encoding="utf-8")
-    print(f"Wrote {len(activities)} activities to {ACTIVITIES_PATH}")
+    print(f"Wrote {len(activities)} accumulated activities ({len(fresh)} in this run's window) to {ACTIVITIES_PATH}")
 
 
 def fetch_per_day_metrics(client, d):

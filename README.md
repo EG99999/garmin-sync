@@ -1,8 +1,10 @@
 # garmin-sync
 
-Pulls your recent Garmin Connect activities (type, time, calories) on a schedule and
-publishes them as a small public JSON feed via GitHub Pages, so any of your apps can
-`fetch()` your workout data without touching Garmin credentials themselves.
+Pulls your Garmin Connect activities (type, time, calories, distance, HR, pace,
+elevation, training effect/load, power/cadence when available) on a schedule and
+publishes your full accumulated history as a small public JSON feed via GitHub
+Pages, so any of your apps can `fetch()` your workout data without touching
+Garmin credentials themselves.
 
 Built because Garmin's official Connect Developer Program rejects personal-use
 applications (and is currently closed to new applicants entirely). This uses the
@@ -16,7 +18,7 @@ Python client instead, which logs in the same way the Garmin mobile app does.
 ```json
 {
   "updatedAt": "2026-07-11T18:00:00Z",
-  "windowDays": 14,
+  "fetchWindowDays": 14,
   "activities": [
     {
       "garminId": "123456789",
@@ -26,7 +28,22 @@ Python client instead, which logs in the same way the Garmin mobile app does.
       "eventType": null,
       "name": "Morning Ride",
       "durationMin": 62,
-      "calories": 480
+      "calories": 480,
+      "distanceKm": 24.3,
+      "avgHr": 138,
+      "maxHr": 162,
+      "avgSpeedKmh": 23.5,
+      "maxSpeedKmh": 41.2,
+      "elevationGainM": 210,
+      "elevationLossM": 205,
+      "aerobicTrainingEffect": 3.2,
+      "anaerobicTrainingEffect": 0.8,
+      "trainingLoad": 87,
+      "avgPowerW": null,
+      "maxPowerW": null,
+      "avgCadence": null,
+      "maxCadence": null,
+      "steps": null
     }
   ]
 }
@@ -34,8 +51,14 @@ Python client instead, which logs in the same way the Garmin mobile app does.
 
 `type` is Garmin's own raw activity type key (`cycling`, `running`, `lap_swimming`,
 `strength_training`, `multi_sport`, …) — deliberately left unmapped here so any consumer
-can apply its own mapping. Nothing sensitive is published: no location, no account info,
-no tokens.
+can apply its own mapping. Every field beyond the basics is optional and `null` when Garmin
+doesn't have it for that activity/device (e.g. `avgPowerW` without a power meter). Nothing
+sensitive is published: no location, no account info, no tokens.
+
+`activities` accumulates your **full history**, not just the fetch window: each run
+re-fetches the last `fetchWindowDays` days (cheap, and corrects activities that were still
+syncing/renaming when last fetched) and merges them by `garminId` on top of whatever was
+already published, so nothing already in the feed is ever dropped.
 
 ### Health metrics (private, not on this feed)
 
