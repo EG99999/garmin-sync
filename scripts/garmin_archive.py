@@ -24,7 +24,9 @@ import getpass
 import json
 import os
 import sys
+import threading
 import time
+from concurrent.futures import ThreadPoolExecutor, as_completed
 from datetime import date, datetime, timedelta, timezone
 from pathlib import Path
 
@@ -152,11 +154,15 @@ class LocalStore:
 
 
 class Archive:
-    def __init__(self, client, store, pause, deadline):
+    def __init__(self, client, store, pause, deadline, workers=1, client_factory=None):
         self.c = client
         self.store = store
         self.pause = pause
         self.deadline = deadline
+        self.workers = max(1, workers)
+        self.client_factory = client_factory
+        self._tls = threading.local()
+        self._lock = threading.Lock()
         self.state = store.read_json("state.json", {}) or {}
         self.state.setdefault("activities", {})   # id -> {"detail": bool, "fit": bool}
         self.state.setdefault("days", {})         # YYYY-MM-DD -> True
@@ -170,13 +176,29 @@ class Archive:
     def save_state(self):
         self.state["updatedAt"] = datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
         self.state["errors"] = self.state["errors"][-MAX_ERRORS_KEPT:]
-        self.store.write_json("state.json", self.state)
+        for attempt in range(5):
+            try:
+                self.store.write_json("state.json", self.state)
+                return
+            except RuntimeError:  # dict modificato da un altro thread durante il salvataggio
+                time.sleep(0.05)
 
     def note_error(self, what, e):
         self.state["errors"].append(f"{datetime.now().isoformat(timespec='seconds')} {what}: {type(e).__name__}: {str(e)[:160]}")
 
     def out_of_time(self):
         return self.deadline is not None and time.time() > self.deadline
+
+    def client(self):
+        """Un client Garmin per thread (la sessione HTTP non e' pensata per l'uso concorrente)."""
+        if threading.current_thread() is threading.main_thread() or not self.client_factory:
+            return self.c
+        if not hasattr(self._tls, "c"):
+            self._tls.c = self.client_factory()
+        return self._tls.c
+
+    def callm(self, what, method, *args, **kwargs):
+        return self.call(what, getattr(self.client(), method), *args, **kwargs)
 
     def call(self, what, fn, *args, **kwargs):
         """Chiama l'API con pausa, retry e gestione 429. Ritorna (ok, dati)."""
@@ -268,50 +290,89 @@ class Archive:
         log(f"  {len(self.state['activities'])} attivita' note")
         self.save_state()
 
+    def _do_activity(self, aid, meta, want_fit):
+        if self.out_of_time():
+            return False
+        if not meta.get("detail"):
+            d = {}
+            calls = {
+                "summary": "get_activity",
+                "splits": "get_activity_splits",
+                "typedSplits": "get_activity_typed_splits",
+                "splitSummaries": "get_activity_split_summaries",
+                "weather": "get_activity_weather",
+                "hrZones": "get_activity_hr_in_timezones",
+                "gear": "get_activity_gear",
+                "details": "get_activity_details",
+            }
+            if meta.get("type") in ("cycling", "road_biking", "mountain_biking", "gravel_cycling", "indoor_cycling", "virtual_ride", "e_bike_fitness", "e_bike_mountain"):
+                calls["powerZones"] = "get_activity_power_in_timezones"
+            if meta.get("type") in ("strength_training", "hiit", "cardio_training"):
+                calls["exerciseSets"] = "get_activity_exercise_sets"
+            for k, method in calls.items():
+                ok, data = self.callm(f"activity.{aid}.{k}", method, aid)
+                if ok:
+                    d[k] = data
+            if d:
+                self.store.write_json(f"activities/detail/{aid}.json", d)
+                meta["detail"] = True
+        if want_fit and not meta.get("fit"):
+            ok, data = self.callm(f"activity.{aid}.fit", "download_activity", aid, dl_fmt=Garmin.ActivityDownloadFormat.ORIGINAL)
+            if ok and data:
+                self.store.write_bytes(f"activities/fit/{aid}.zip", data)
+                meta["fit"] = True
+            elif ok is False:
+                meta["fit"] = None  # nessun file originale (es. attivita' manuale): non riprovare
+        return True
+
+    def _run_parallel(self, items, fn, label, on_result=None, every=10):
+        """Esegue fn(item) su self.workers thread; si ferma pulito su 429 o a fine tempo."""
+        done = 0
+        rate_limited = None
+        it = iter(items)
+        with ThreadPoolExecutor(max_workers=self.workers) as ex:
+            futs = {}
+
+            def submit_next():
+                try:
+                    item = next(it)
+                except StopIteration:
+                    return
+                futs[ex.submit(fn, item)] = item
+
+            for _ in range(self.workers * 2):
+                submit_next()
+            while futs:
+                f = next(as_completed(list(futs)))
+                item = futs.pop(f)
+                try:
+                    res = f.result()
+                except RateLimited as e:
+                    rate_limited = e
+                    res = None
+                done += 1
+                if on_result:
+                    on_result(item, res)
+                if done % every == 0:
+                    log(f"  {label} {done}/{len(items)}")
+                    with self._lock:
+                        self.save_state()
+                if not rate_limited and not self.out_of_time():
+                    submit_next()
+        if rate_limited:
+            with self._lock:
+                self.save_state()
+            raise rate_limited
+        return done
+
     def sync_activity_details(self, want_fit):
         todo = sorted(
             [(aid, meta) for aid, meta in self.state["activities"].items() if not meta.get("detail") or (want_fit and not meta.get("fit"))],
             key=lambda kv: kv[1].get("date", ""), reverse=True)
-        log(f"Dettagli attivita' da scaricare: {len(todo)}")
-        for i, (aid, meta) in enumerate(todo, 1):
-            if self.out_of_time():
-                log("Tempo massimo raggiunto, mi fermo (riprendo al prossimo giro)")
-                return False
-            if not meta.get("detail"):
-                d = {}
-                calls = {
-                    "summary": (self.c.get_activity, (aid,)),
-                    "splits": (self.c.get_activity_splits, (aid,)),
-                    "typedSplits": (self.c.get_activity_typed_splits, (aid,)),
-                    "splitSummaries": (self.c.get_activity_split_summaries, (aid,)),
-                    "weather": (self.c.get_activity_weather, (aid,)),
-                    "hrZones": (self.c.get_activity_hr_in_timezones, (aid,)),
-                    "gear": (self.c.get_activity_gear, (aid,)),
-                    "details": (self.c.get_activity_details, (aid,)),
-                }
-                if meta.get("type") in ("cycling", "road_biking", "mountain_biking", "gravel_cycling", "indoor_cycling", "virtual_ride", "e_bike_fitness", "e_bike_mountain"):
-                    calls["powerZones"] = (self.c.get_activity_power_in_timezones, (aid,))
-                if meta.get("type") in ("strength_training", "hiit", "cardio_training"):
-                    calls["exerciseSets"] = (self.c.get_activity_exercise_sets, (aid,))
-                for k, (fn, args) in calls.items():
-                    ok, data = self.call(f"activity.{aid}.{k}", fn, *args)
-                    if ok:
-                        d[k] = data
-                if d:
-                    self.store.write_json(f"activities/detail/{aid}.json", d)
-                    meta["detail"] = True
-            if want_fit and not meta.get("fit"):
-                ok, data = self.call(f"activity.{aid}.fit", self.c.download_activity, aid, dl_fmt=Garmin.ActivityDownloadFormat.ORIGINAL)
-                if ok and data:
-                    self.store.write_bytes(f"activities/fit/{aid}.zip", data)
-                    meta["fit"] = True
-                elif ok is False:
-                    meta["fit"] = None  # nessun file originale (es. attivita' manuale): non riprovare
-            if i % 10 == 0:
-                log(f"  attivita' {i}/{len(todo)} ({meta.get('date')})")
-                self.save_state()
+        log(f"Dettagli attivita' da scaricare: {len(todo)} (thread: {self.workers})")
+        self._run_parallel(todo, lambda kv: self._do_activity(kv[0], kv[1], want_fit), "attivita'")
         self.save_state()
-        return True
+        return not self.out_of_time()
 
     # ---------- giorni ----------
     def _month_key(self, day):
@@ -328,17 +389,17 @@ class Archive:
             self.store.write_json(f"daily/{ym[:4]}/{ym}.json", data)
         self._months = {}
 
-    def sync_day(self, day):
-        ym, month = self._month_get(day)
-        rec = month.setdefault(day, {})
+    def _fetch_day(self, day):
+        if self.out_of_time():
+            return None
+        rec = {}
         for name, method in PER_DAY.items():
-            fn = getattr(self.c, method, None)
-            if fn is None:
+            if not hasattr(self.client(), method):
                 continue
-            ok, data = self.call(f"day.{day}.{name}", fn, day)
+            ok, data = self.callm(f"day.{day}.{name}", method, day)
             if ok and data not in (None, [], {}):
                 rec[name] = data
-        self.state["days"][day] = True
+        return rec
 
     def sync_days(self, since, until, redo_last=0):
         days = []
@@ -348,22 +409,26 @@ class Archive:
             if not self.state["days"].get(k) or (until - d).days < redo_last:
                 days.append(k)
             d -= timedelta(days=1)
-        log(f"Giorni da scaricare: {len(days)}")
-        prev_ym = None
-        for i, k in enumerate(days, 1):
-            if self.out_of_time():
-                log("Tempo massimo raggiunto, mi fermo (riprendo al prossimo giro)")
-                break
-            self.sync_day(k)
-            if prev_ym and k[:7] != prev_ym:
-                self.flush_months()
-            prev_ym = k[:7]
-            if i % 15 == 0:
+        log(f"Giorni da scaricare: {len(days)} (thread: {self.workers})")
+        counter = {"n": 0}
+
+        def on_result(day, rec):
+            if rec is None:
+                return
+            with self._lock:
+                ym, month = self._month_get(day)
+                month[day] = rec
+                self.state["days"][day] = True
+                counter["n"] += 1
+                if counter["n"] % 20 == 0:
+                    self.flush_months()
+
+        try:
+            self._run_parallel(days, self._fetch_day, "giorni", on_result, every=15)
+        finally:
+            with self._lock:
                 self.flush_months()
                 self.save_state()
-                log(f"  giorno {i}/{len(days)} ({k})")
-        self.flush_months()
-        self.save_state()
 
     # ---------- serie a intervallo ----------
     def sync_ranges(self, since, until, recent_only=False):
@@ -490,7 +555,8 @@ def main():
     ap.add_argument("--mode", choices=["backfill", "incremental"], default="backfill")
     ap.add_argument("--since", help="YYYY-MM-DD: non andare piu' indietro di questa data")
     ap.add_argument("--recent-days", type=int, default=3, help="incremental: giorni da riscaricare sempre")
-    ap.add_argument("--pause", type=float, default=0.6, help="secondi tra una chiamata e l'altra")
+    ap.add_argument("--pause", type=float, default=0.25, help="secondi tra una chiamata e l'altra (per thread)")
+    ap.add_argument("--workers", type=int, default=1, help="thread paralleli per dettagli attivita' e giorni")
     ap.add_argument("--max-minutes", type=float, default=None)
     ap.add_argument("--skip-fit", action="store_true")
     ap.add_argument("--rebuild-summary", action="store_true", help="rigenera daily/summary.json dai file mensili ed esce")
@@ -511,7 +577,7 @@ def main():
         log(f"Garmin ha limitato il login, riprova piu' tardi: {e}")
         return 3
 
-    arc = Archive(client, LocalStore(args.dest), args.pause, deadline)
+    arc = Archive(client, LocalStore(args.dest), args.pause, deadline, workers=args.workers, client_factory=login)
     today = date.today()
     try:
         arc.sync_profile()
