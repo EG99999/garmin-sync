@@ -390,6 +390,81 @@ class Archive:
             end = start - timedelta(days=1)
 
 
+
+def _g(obj, *path):
+    for k in path:
+        if isinstance(obj, list):
+            try:
+                obj = obj[k] if isinstance(k, int) else None
+            except IndexError:
+                obj = None
+        elif isinstance(obj, dict):
+            obj = obj.get(k)
+        else:
+            return None
+        if obj is None:
+            return None
+    return obj
+
+
+def summarize_day(rec):
+    """Riga compatta per giorno (per app e coach): pochi numeri, niente serie temporali."""
+    out = {}
+    stats = rec.get("stats") or {}
+    sleep = _g(rec, "sleep", "dailySleepDTO") or {}
+    scores = sleep.get("sleepScores") or {}
+    rhr = _g(rec, "restingHeartRate", "allMetrics", "metricsMap", "WELLNESS_RESTING_HEART_RATE", 0, "value")
+    stress = rec.get("stress") or {}
+    bb = [v[2] for v in (stress.get("bodyBatteryValuesArray") or []) if isinstance(v, list) and len(v) > 2 and isinstance(v[2], (int, float))]
+    ready = rec.get("trainingReadiness")
+    if isinstance(ready, list) and ready:
+        ready = max((r for r in ready if isinstance(r, dict)), key=lambda r: r.get("timestamp") or "", default=None)
+    mm = rec.get("maxMetrics")
+    mm = mm[0] if isinstance(mm, list) and mm else (mm or {})
+    w = _g(rec, "weighIns", "dateWeightList", 0) or {}
+    m = {
+        "rhr": rhr if rhr is not None else stats.get("restingHeartRate"),
+        "minHr": stats.get("minHeartRate"), "maxHr": stats.get("maxHeartRate"),
+        "steps": stats.get("totalSteps"), "kcalTotal": stats.get("totalKilocalories"), "kcalActive": stats.get("activeKilocalories"),
+        "distanceM": stats.get("totalDistanceMeters"),
+        "modMin": stats.get("moderateIntensityMinutes"), "vigMin": stats.get("vigorousIntensityMinutes"),
+        "sleepSec": sleep.get("sleepTimeSeconds"), "deepSec": sleep.get("deepSleepSeconds"), "lightSec": sleep.get("lightSleepSeconds"),
+        "remSec": sleep.get("remSleepSeconds"), "awakeSec": sleep.get("awakeSleepSeconds"),
+        "sleepScore": _g(scores, "overall", "value"), "sleepHr": sleep.get("avgHeartRate"), "sleepResp": sleep.get("averageRespirationValue"),
+        "hrvLast": _g(rec, "hrv", "hrvSummary", "lastNightAvg"), "hrvWeekly": _g(rec, "hrv", "hrvSummary", "weeklyAvg"), "hrvStatus": _g(rec, "hrv", "hrvSummary", "status"),
+        "stressAvg": stress.get("avgStressLevel"), "stressMax": stress.get("maxStressLevel"),
+        "bbHigh": max(bb) if bb else stats.get("bodyBatteryHighestValue"), "bbLow": min(bb) if bb else stats.get("bodyBatteryLowestValue"),
+        "readiness": _g(ready, "score") if ready else None, "readinessLevel": _g(ready, "level") if ready else None,
+        "vo2Run": _g(mm, "generic", "vo2MaxPreciseValue"), "vo2Bike": _g(mm, "cycling", "vo2MaxPreciseValue"),
+        "weightG": w.get("weight"), "bodyFat": w.get("bodyFat"),
+        "spo2": _g(rec, "spo2", "averageSpO2"), "spo2Low": _g(rec, "spo2", "lowestSpO2"),
+        "respWaking": _g(rec, "respiration", "avgWakingRespirationValue"),
+    }
+    for k, v in m.items():
+        if v is not None:
+            out[k] = round(v, 1) if isinstance(v, float) else v
+    return out
+
+
+def rebuild_summary(store):
+    """Rilegge tutti i file mensili e rigenera daily/summary.json."""
+    summary = {}
+    daily = store.root / "daily"
+    for f in sorted(daily.glob("*/*.json")):
+        if f.name == "summary.json":
+            continue
+        try:
+            month = json.loads(f.read_text(encoding="utf-8"))
+        except Exception:
+            continue
+        for day, rec in month.items():
+            s = summarize_day(rec)
+            if s:
+                summary[day] = s
+    store.write_json("daily/summary.json", summary)
+    return len(summary)
+
+
 def login():
     email = os.environ.get("GARMIN_EMAIL")
     password = os.environ.get("GARMIN_PASSWORD")
@@ -418,7 +493,13 @@ def main():
     ap.add_argument("--pause", type=float, default=0.6, help="secondi tra una chiamata e l'altra")
     ap.add_argument("--max-minutes", type=float, default=None)
     ap.add_argument("--skip-fit", action="store_true")
+    ap.add_argument("--rebuild-summary", action="store_true", help="rigenera daily/summary.json dai file mensili ed esce")
     args = ap.parse_args()
+
+    if args.rebuild_summary:
+        n = rebuild_summary(LocalStore(args.dest))
+        log(f"summary.json rigenerato: {n} giorni")
+        return 0
 
     deadline = time.time() + args.max_minutes * 60 if args.max_minutes else None
     try:
@@ -443,7 +524,7 @@ def main():
         arc.sync_ranges(floor, today, recent_only=(args.mode == "incremental"))
     except RateLimited as e:
         log(f"Garmin limita le richieste ({e}). Progressi salvati: rilancia piu' tardi per riprendere.")
-        arc.flush_months(); arc.save_state()
+        arc.flush_months(); arc.save_state(); rebuild_summary(arc.store)
         return 3
     except GarminConnectAuthenticationError as e:
         log(f"Autenticazione Garmin scaduta: {e}")
@@ -455,6 +536,7 @@ def main():
         return 130
     arc.flush_months()
     arc.save_state()
+    log(f"summary.json: {rebuild_summary(arc.store)} giorni")
     n_det = sum(1 for m in arc.state["activities"].values() if m.get("detail"))
     log(f"FATTO. Attivita' {len(arc.state['activities'])} (dettaglio {n_det}), giorni {len(arc.state['days'])}, errori registrati {len(arc.state['errors'])}")
     return 0
