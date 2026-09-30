@@ -1,7 +1,32 @@
 {
-  "updatedAt": "2026-09-30T12:27:58Z",
+  "updatedAt": "2026-09-30T19:58:24Z",
   "fetchWindowDays": 14,
   "activities": [
+    {
+      "garminId": "24556277070",
+      "date": "2026-09-30",
+      "startTimeLocal": "2026-09-30T17:15:37",
+      "type": "road_biking",
+      "eventType": "uncategorized",
+      "name": "Brescia Ciclismo su strada",
+      "durationMin": 51.0,
+      "calories": 585,
+      "distanceKm": 23.03,
+      "avgHr": 117,
+      "maxHr": 130,
+      "avgSpeedKmh": 27.1,
+      "maxSpeedKmh": 36.8,
+      "elevationGainM": 57,
+      "elevationLossM": 31,
+      "aerobicTrainingEffect": 2.0,
+      "anaerobicTrainingEffect": 0.0,
+      "trainingLoad": 30,
+      "avgPowerW": 165,
+      "maxPowerW": 656,
+      "avgCadence": null,
+      "maxCadence": null,
+      "steps": null
+    },
     {
       "garminId": "24550143317",
       "date": "2026-09-30",
