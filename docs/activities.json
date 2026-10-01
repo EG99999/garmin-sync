@@ -1,7 +1,32 @@
 {
-  "updatedAt": "2026-10-01T10:02:12Z",
+  "updatedAt": "2026-10-01T18:23:37Z",
   "fetchWindowDays": 14,
   "activities": [
+    {
+      "garminId": "24565600288",
+      "date": "2026-10-01",
+      "startTimeLocal": "2026-10-01T13:03:55",
+      "type": "running",
+      "eventType": "uncategorized",
+      "name": "Brescia Corsa",
+      "durationMin": 39.7,
+      "calories": 597,
+      "distanceKm": 7.32,
+      "avgHr": 140,
+      "maxHr": 159,
+      "avgSpeedKmh": 11.1,
+      "maxSpeedKmh": 15.5,
+      "elevationGainM": 33,
+      "elevationLossM": 33,
+      "aerobicTrainingEffect": 3.1,
+      "anaerobicTrainingEffect": 0.0,
+      "trainingLoad": 81,
+      "avgPowerW": 381,
+      "maxPowerW": 557,
+      "avgCadence": 160,
+      "maxCadence": 231,
+      "steps": 6322
+    },
     {
       "garminId": "24556277070",
       "date": "2026-09-30",
