@@ -1,7 +1,32 @@
 {
-  "updatedAt": "2026-10-05T05:29:55Z",
+  "updatedAt": "2026-10-05T14:28:03Z",
   "fetchWindowDays": 14,
   "activities": [
+    {
+      "garminId": "24610123469",
+      "date": "2026-10-05",
+      "startTimeLocal": "2026-10-05T07:05:58",
+      "type": "road_biking",
+      "eventType": "uncategorized",
+      "name": "Chiari Ciclismo su strada",
+      "durationMin": 50.7,
+      "calories": 643,
+      "distanceKm": 23.0,
+      "avgHr": 116,
+      "maxHr": 138,
+      "avgSpeedKmh": 27.2,
+      "maxSpeedKmh": 39.9,
+      "elevationGainM": 31,
+      "elevationLossM": 59,
+      "aerobicTrainingEffect": 2.1,
+      "anaerobicTrainingEffect": 0.0,
+      "trainingLoad": 33,
+      "avgPowerW": 185,
+      "maxPowerW": 724,
+      "avgCadence": null,
+      "maxCadence": null,
+      "steps": null
+    },
     {
       "garminId": "24580291318",
       "date": "2026-10-02",
