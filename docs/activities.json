@@ -1,7 +1,32 @@
 {
-  "updatedAt": "2026-10-06T06:13:31Z",
+  "updatedAt": "2026-10-06T13:16:31Z",
   "fetchWindowDays": 14,
   "activities": [
+    {
+      "garminId": "24625501427",
+      "date": "2026-10-06",
+      "startTimeLocal": "2026-10-06T13:03:48",
+      "type": "running",
+      "eventType": "uncategorized",
+      "name": "Brescia - Coach - Corsa 44' + 3x5' ritmo g",
+      "durationMin": 38.3,
+      "calories": 564,
+      "distanceKm": 6.69,
+      "avgHr": 140,
+      "maxHr": 164,
+      "avgSpeedKmh": 10.5,
+      "maxSpeedKmh": 13.7,
+      "elevationGainM": 36,
+      "elevationLossM": 34,
+      "aerobicTrainingEffect": 2.9,
+      "anaerobicTrainingEffect": 0.0,
+      "trainingLoad": 72,
+      "avgPowerW": 362,
+      "maxPowerW": 518,
+      "avgCadence": 156,
+      "maxCadence": 169,
+      "steps": 5970
+    },
     {
       "garminId": "24619020095",
       "date": "2026-10-05",
