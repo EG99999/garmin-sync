@@ -1,7 +1,32 @@
 {
-  "updatedAt": "2026-10-11T05:39:08Z",
+  "updatedAt": "2026-10-11T12:42:01Z",
   "fetchWindowDays": 14,
   "activities": [
+    {
+      "garminId": "24682653125",
+      "date": "2026-10-11",
+      "startTimeLocal": "2026-10-11T09:40:09",
+      "type": "running",
+      "eventType": "uncategorized",
+      "name": "Chiari - Coach - Ultimo lungo 16km con fi",
+      "durationMin": 93.2,
+      "calories": 1334,
+      "distanceKm": 16.0,
+      "avgHr": 144,
+      "maxHr": 180,
+      "avgSpeedKmh": 10.3,
+      "maxSpeedKmh": 18.3,
+      "elevationGainM": 29,
+      "elevationLossM": 35,
+      "aerobicTrainingEffect": 3.5,
+      "anaerobicTrainingEffect": 0.1,
+      "trainingLoad": 121,
+      "avgPowerW": 346,
+      "maxPowerW": 590,
+      "avgCadence": 158,
+      "maxCadence": 185,
+      "steps": 14762
+    },
     {
       "garminId": "24664812271",
       "date": "2026-10-09",
