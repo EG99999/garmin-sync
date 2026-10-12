@@ -1,7 +1,32 @@
 {
-  "updatedAt": "2026-10-12T10:39:50Z",
+  "updatedAt": "2026-10-12T21:14:16Z",
   "fetchWindowDays": 14,
   "activities": [
+    {
+      "garminId": "24698780561",
+      "date": "2026-10-12",
+      "startTimeLocal": "2026-10-12T17:13:15",
+      "type": "road_biking",
+      "eventType": "uncategorized",
+      "name": "Brescia - Coach - Bici al lavoro (ritorno) z2",
+      "durationMin": 49.2,
+      "calories": 630,
+      "distanceKm": 23.01,
+      "avgHr": 122,
+      "maxHr": 139,
+      "avgSpeedKmh": 28.1,
+      "maxSpeedKmh": 38.2,
+      "elevationGainM": 55,
+      "elevationLossM": 31,
+      "aerobicTrainingEffect": 2.3,
+      "anaerobicTrainingEffect": 0.0,
+      "trainingLoad": 42,
+      "avgPowerW": 187,
+      "maxPowerW": 670,
+      "avgCadence": null,
+      "maxCadence": null,
+      "steps": null
+    },
     {
       "garminId": "24692848120",
       "date": "2026-10-12",
