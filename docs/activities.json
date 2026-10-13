@@ -1,7 +1,32 @@
 {
-  "updatedAt": "2026-10-13T10:27:27Z",
+  "updatedAt": "2026-10-13T19:13:04Z",
   "fetchWindowDays": 14,
   "activities": [
+    {
+      "garminId": "24707431476",
+      "date": "2026-10-13",
+      "startTimeLocal": "2026-10-13T12:44:12",
+      "type": "running",
+      "eventType": "uncategorized",
+      "name": "Brescia - Coach - Scarico 25' + 3x2' ritmo",
+      "durationMin": 26.0,
+      "calories": 382,
+      "distanceKm": 4.78,
+      "avgHr": 137,
+      "maxHr": 150,
+      "avgSpeedKmh": 11.0,
+      "maxSpeedKmh": 16.7,
+      "elevationGainM": 22,
+      "elevationLossM": 21,
+      "aerobicTrainingEffect": 2.5,
+      "anaerobicTrainingEffect": 0.0,
+      "trainingLoad": 52,
+      "avgPowerW": 375,
+      "maxPowerW": 611,
+      "avgCadence": 160,
+      "maxCadence": 171,
+      "steps": 4122
+    },
     {
       "garminId": "24704572802",
       "date": "2026-10-12",
