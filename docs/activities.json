@@ -1,7 +1,32 @@
 {
-  "updatedAt": "2026-10-14T00:15:49Z",
+  "updatedAt": "2026-10-14T08:36:46Z",
   "fetchWindowDays": 14,
   "activities": [
+    {
+      "garminId": "24717259070",
+      "date": "2026-10-14",
+      "startTimeLocal": "2026-10-14T07:07:32",
+      "type": "road_biking",
+      "eventType": "uncategorized",
+      "name": "Chiari - Coach - Bici al lavoro (andata) z2",
+      "durationMin": 49.0,
+      "calories": 668,
+      "distanceKm": 23.01,
+      "avgHr": 123,
+      "maxHr": 145,
+      "avgSpeedKmh": 28.2,
+      "maxSpeedKmh": 39.1,
+      "elevationGainM": 30,
+      "elevationLossM": 58,
+      "aerobicTrainingEffect": 2.3,
+      "anaerobicTrainingEffect": 0.0,
+      "trainingLoad": 41,
+      "avgPowerW": 201,
+      "maxPowerW": 767,
+      "avgCadence": null,
+      "maxCadence": null,
+      "steps": null
+    },
     {
       "garminId": "24713793870",
       "date": "2026-10-13",
