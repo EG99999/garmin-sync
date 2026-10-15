@@ -1,7 +1,32 @@
 {
-  "updatedAt": "2026-10-15T11:20:33Z",
+  "updatedAt": "2026-10-15T16:53:53Z",
   "fetchWindowDays": 14,
   "activities": [
+    {
+      "garminId": "24732191987",
+      "date": "2026-10-15",
+      "startTimeLocal": "2026-10-15T13:05:47",
+      "type": "running",
+      "eventType": "uncategorized",
+      "name": "Brescia - Coach - Shakeout 20'",
+      "durationMin": 20.0,
+      "calories": 274,
+      "distanceKm": 3.33,
+      "avgHr": 130,
+      "maxHr": 141,
+      "avgSpeedKmh": 10.0,
+      "maxSpeedKmh": 12.6,
+      "elevationGainM": 16,
+      "elevationLossM": 17,
+      "aerobicTrainingEffect": 2.1,
+      "anaerobicTrainingEffect": 0.0,
+      "trainingLoad": 31,
+      "avgPowerW": 340,
+      "maxPowerW": 510,
+      "avgCadence": 156,
+      "maxCadence": 226,
+      "steps": 3112
+    },
     {
       "garminId": "24723749896",
       "date": "2026-10-14",
