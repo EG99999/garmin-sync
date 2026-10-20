@@ -1,7 +1,32 @@
 {
-  "updatedAt": "2026-10-20T19:10:41Z",
+  "updatedAt": "2026-10-20T23:49:53Z",
   "fetchWindowDays": 14,
   "activities": [
+    {
+      "garminId": "24795936883",
+      "date": "2026-10-20",
+      "startTimeLocal": "2026-10-20T20:34:47",
+      "type": "lap_swimming",
+      "eventType": "uncategorized",
+      "name": "Piscina",
+      "durationMin": 149.2,
+      "calories": 994,
+      "distanceKm": 3.33,
+      "avgHr": 104,
+      "maxHr": 154,
+      "avgSpeedKmh": 3.4,
+      "maxSpeedKmh": 6.0,
+      "elevationGainM": null,
+      "elevationLossM": null,
+      "aerobicTrainingEffect": 2.5,
+      "anaerobicTrainingEffect": 1.1,
+      "trainingLoad": 66,
+      "avgPowerW": null,
+      "maxPowerW": null,
+      "avgCadence": null,
+      "maxCadence": null,
+      "steps": null
+    },
     {
       "garminId": "24789617054",
       "date": "2026-10-20",
