@@ -1,7 +1,32 @@
 {
-  "updatedAt": "2026-10-23T04:40:56Z",
+  "updatedAt": "2026-10-23T11:31:18Z",
   "fetchWindowDays": 14,
   "activities": [
+    {
+      "garminId": "24821455733",
+      "date": "2026-10-23",
+      "startTimeLocal": "2026-10-23T06:31:09",
+      "type": "indoor_cycling",
+      "eventType": "uncategorized",
+      "name": "Coach - Prova ciclomulino (calibrazione + z2)",
+      "durationMin": 36.4,
+      "calories": 281,
+      "distanceKm": 14.19,
+      "avgHr": 96,
+      "maxHr": 114,
+      "avgSpeedKmh": 23.4,
+      "maxSpeedKmh": 155.1,
+      "elevationGainM": null,
+      "elevationLossM": null,
+      "aerobicTrainingEffect": 0.9,
+      "anaerobicTrainingEffect": 0.0,
+      "trainingLoad": 11,
+      "avgPowerW": 102,
+      "maxPowerW": 369,
+      "avgCadence": null,
+      "maxCadence": null,
+      "steps": null
+    },
     {
       "garminId": "24813237009",
       "date": "2026-10-22",
