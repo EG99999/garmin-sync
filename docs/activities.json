@@ -1,7 +1,32 @@
 {
-  "updatedAt": "2026-10-26T04:38:24Z",
+  "updatedAt": "2026-10-26T12:51:04Z",
   "fetchWindowDays": 14,
   "activities": [
+    {
+      "garminId": "24853363432",
+      "date": "2026-10-26",
+      "startTimeLocal": "2026-10-26T06:35:43",
+      "type": "indoor_cycling",
+      "eventType": "uncategorized",
+      "name": "Coach - Ciclomulino ramp test FTP",
+      "durationMin": 25.6,
+      "calories": 280,
+      "distanceKm": 9.51,
+      "avgHr": 118,
+      "maxHr": 162,
+      "avgSpeedKmh": 22.3,
+      "maxSpeedKmh": 29.3,
+      "elevationGainM": null,
+      "elevationLossM": null,
+      "aerobicTrainingEffect": 2.2,
+      "anaerobicTrainingEffect": 0.0,
+      "trainingLoad": 33,
+      "avgPowerW": 156,
+      "maxPowerW": 494,
+      "avgCadence": null,
+      "maxCadence": null,
+      "steps": null
+    },
     {
       "garminId": "24824541841",
       "date": "2026-10-23",
