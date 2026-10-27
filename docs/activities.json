@@ -1,7 +1,32 @@
 {
-  "updatedAt": "2026-10-27T00:23:09Z",
+  "updatedAt": "2026-10-27T08:53:18Z",
   "fetchWindowDays": 14,
   "activities": [
+    {
+      "garminId": "24864953873",
+      "date": "2026-10-27",
+      "startTimeLocal": "2026-10-27T06:38:45",
+      "type": "indoor_cardio",
+      "eventType": "uncategorized",
+      "name": "Cardio",
+      "durationMin": 31.6,
+      "calories": 121,
+      "distanceKm": null,
+      "avgHr": 81,
+      "maxHr": 110,
+      "avgSpeedKmh": null,
+      "maxSpeedKmh": null,
+      "elevationGainM": null,
+      "elevationLossM": null,
+      "aerobicTrainingEffect": 0.1,
+      "anaerobicTrainingEffect": 0.0,
+      "trainingLoad": 2,
+      "avgPowerW": null,
+      "maxPowerW": null,
+      "avgCadence": null,
+      "maxCadence": null,
+      "steps": 92
+    },
     {
       "garminId": "24862084481",
       "date": "2026-10-26",
