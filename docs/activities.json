@@ -1,7 +1,32 @@
 {
-  "updatedAt": "2026-10-29T09:50:57Z",
+  "updatedAt": "2026-10-29T18:25:08Z",
   "fetchWindowDays": 14,
   "activities": [
+    {
+      "garminId": "24892862932",
+      "date": "2026-10-29",
+      "startTimeLocal": "2026-10-29T13:16:16",
+      "type": "running",
+      "eventType": "uncategorized",
+      "name": "Brescia - Coach - Corsa 56' con 3x8' a rit",
+      "durationMin": 39.5,
+      "calories": 624,
+      "distanceKm": 7.63,
+      "avgHr": 146,
+      "maxHr": 168,
+      "avgSpeedKmh": 11.6,
+      "maxSpeedKmh": 15.6,
+      "elevationGainM": 33,
+      "elevationLossM": 38,
+      "aerobicTrainingEffect": 3.3,
+      "anaerobicTrainingEffect": 0.0,
+      "trainingLoad": 102,
+      "avgPowerW": 394,
+      "maxPowerW": 593,
+      "avgCadence": 159,
+      "maxCadence": 231,
+      "steps": 6268
+    },
     {
       "garminId": "24889281177",
       "date": "2026-10-29",
