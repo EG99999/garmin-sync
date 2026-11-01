@@ -1,7 +1,32 @@
 {
-  "updatedAt": "2026-11-01T05:54:51Z",
+  "updatedAt": "2026-11-01T13:13:32Z",
   "fetchWindowDays": 14,
   "activities": [
+    {
+      "garminId": "24926829120",
+      "date": "2026-11-01",
+      "startTimeLocal": "2026-11-01T10:49:08",
+      "type": "running",
+      "eventType": "uncategorized",
+      "name": "Chiari - Coach - Lungo facile 14 km",
+      "durationMin": 76.8,
+      "calories": 1196,
+      "distanceKm": 14.0,
+      "avgHr": 139,
+      "maxHr": 152,
+      "avgSpeedKmh": 10.9,
+      "maxSpeedKmh": 12.7,
+      "elevationGainM": 45,
+      "elevationLossM": 39,
+      "aerobicTrainingEffect": 3.7,
+      "anaerobicTrainingEffect": 0.0,
+      "trainingLoad": 144,
+      "avgPowerW": 373,
+      "maxPowerW": 491,
+      "avgCadence": 161,
+      "maxCadence": 241,
+      "steps": 12278
+    },
     {
       "garminId": "24904451716",
       "date": "2026-10-30",
