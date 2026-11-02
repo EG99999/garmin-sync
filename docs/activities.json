@@ -1,7 +1,32 @@
 {
-  "updatedAt": "2026-11-02T00:37:34Z",
+  "updatedAt": "2026-11-02T10:54:53Z",
   "fetchWindowDays": 14,
   "activities": [
+    {
+      "garminId": "24935658948",
+      "date": "2026-11-02",
+      "startTimeLocal": "2026-11-02T06:50:40",
+      "type": "indoor_cycling",
+      "eventType": "uncategorized",
+      "name": "Coach - Ciclomulino VO2max 4x3'",
+      "durationMin": 27.9,
+      "calories": 293,
+      "distanceKm": 7.69,
+      "avgHr": 113,
+      "maxHr": 143,
+      "avgSpeedKmh": 16.5,
+      "maxSpeedKmh": 27.4,
+      "elevationGainM": null,
+      "elevationLossM": null,
+      "aerobicTrainingEffect": 1.7,
+      "anaerobicTrainingEffect": 0.0,
+      "trainingLoad": 21,
+      "avgPowerW": 149,
+      "maxPowerW": 380,
+      "avgCadence": null,
+      "maxCadence": null,
+      "steps": null
+    },
     {
       "garminId": "24926829120",
       "date": "2026-11-01",
