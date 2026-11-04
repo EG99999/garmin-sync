@@ -1,7 +1,32 @@
 {
-  "updatedAt": "2026-11-03T23:15:37Z",
+  "updatedAt": "2026-11-04T06:06:54Z",
   "fetchWindowDays": 14,
   "activities": [
+    {
+      "garminId": "24959590415",
+      "date": "2026-11-04",
+      "startTimeLocal": "2026-11-04T06:15:02",
+      "type": "indoor_cycling",
+      "eventType": "uncategorized",
+      "name": "Coach - Ciclomulino soglia 2x10'",
+      "durationMin": 27.5,
+      "calories": 278,
+      "distanceKm": 6.76,
+      "avgHr": 116,
+      "maxHr": 142,
+      "avgSpeedKmh": 14.7,
+      "maxSpeedKmh": 20.4,
+      "elevationGainM": null,
+      "elevationLossM": null,
+      "aerobicTrainingEffect": 1.4,
+      "anaerobicTrainingEffect": 0.0,
+      "trainingLoad": 17,
+      "avgPowerW": 142,
+      "maxPowerW": 384,
+      "avgCadence": null,
+      "maxCadence": null,
+      "steps": null
+    },
     {
       "garminId": "24956488413",
       "date": "2026-11-03",
