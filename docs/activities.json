@@ -1,7 +1,32 @@
 {
-  "updatedAt": "2026-11-08T10:11:24Z",
+  "updatedAt": "2026-11-08T17:53:44Z",
   "fetchWindowDays": 14,
   "activities": [
+    {
+      "garminId": "25006439871",
+      "date": "2026-11-08",
+      "startTimeLocal": "2026-11-08T09:46:01",
+      "type": "running",
+      "eventType": "uncategorized",
+      "name": "Crema - Coach - Crema Half Marathon - RE",
+      "durationMin": 97.4,
+      "calories": 1683,
+      "distanceKm": 21.23,
+      "avgHr": 167,
+      "maxHr": 184,
+      "avgSpeedKmh": 13.1,
+      "maxSpeedKmh": 17.1,
+      "elevationGainM": 57,
+      "elevationLossM": 53,
+      "aerobicTrainingEffect": 5.0,
+      "anaerobicTrainingEffect": 0.7,
+      "trainingLoad": 320,
+      "avgPowerW": 433,
+      "maxPowerW": 573,
+      "avgCadence": 171,
+      "maxCadence": 183,
+      "steps": 16574
+    },
     {
       "garminId": "25004989451",
       "date": "2026-11-08",
