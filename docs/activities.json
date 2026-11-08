@@ -1,7 +1,32 @@
 {
-  "updatedAt": "2026-11-08T00:30:35Z",
+  "updatedAt": "2026-11-08T10:11:24Z",
   "fetchWindowDays": 14,
   "activities": [
+    {
+      "garminId": "25004989451",
+      "date": "2026-11-08",
+      "startTimeLocal": "2026-11-08T09:10:57",
+      "type": "running",
+      "eventType": "uncategorized",
+      "name": "Crema Corsa",
+      "durationMin": 5.5,
+      "calories": 83,
+      "distanceKm": 1.06,
+      "avgHr": 135,
+      "maxHr": 152,
+      "avgSpeedKmh": 11.5,
+      "maxSpeedKmh": 20.8,
+      "elevationGainM": 8,
+      "elevationLossM": 3,
+      "aerobicTrainingEffect": 1.5,
+      "anaerobicTrainingEffect": 0.0,
+      "trainingLoad": 17,
+      "avgPowerW": 395,
+      "maxPowerW": 649,
+      "avgCadence": 157,
+      "maxCadence": 187,
+      "steps": 876
+    },
     {
       "garminId": "24976584905",
       "date": "2026-11-05",
