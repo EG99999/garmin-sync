@@ -1,7 +1,32 @@
 {
-  "updatedAt": "2026-11-19T11:30:00Z",
+  "updatedAt": "2026-11-19T20:28:43Z",
   "fetchWindowDays": 14,
   "activities": [
+    {
+      "garminId": "25130444769",
+      "date": "2026-11-19",
+      "startTimeLocal": "2026-11-19T13:20:09",
+      "type": "running",
+      "eventType": "uncategorized",
+      "name": "Brescia - Coach - Corsa con 3x3' richiamo",
+      "durationMin": 35.0,
+      "calories": 520,
+      "distanceKm": 6.38,
+      "avgHr": 140,
+      "maxHr": 171,
+      "avgSpeedKmh": 10.9,
+      "maxSpeedKmh": 17.5,
+      "elevationGainM": 37,
+      "elevationLossM": 37,
+      "aerobicTrainingEffect": 3.0,
+      "anaerobicTrainingEffect": 0.5,
+      "trainingLoad": 80,
+      "avgPowerW": 371,
+      "maxPowerW": 629,
+      "avgCadence": 155,
+      "maxCadence": 231,
+      "steps": 5474
+    },
     {
       "garminId": "25122430268",
       "date": "2026-11-18",
