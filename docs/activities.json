@@ -1,7 +1,32 @@
 {
-  "updatedAt": "2026-11-23T01:36:50Z",
+  "updatedAt": "2026-11-23T12:21:10Z",
   "fetchWindowDays": 14,
   "activities": [
+    {
+      "garminId": "25169117515",
+      "date": "2026-11-23",
+      "startTimeLocal": "2026-11-23T06:18:25",
+      "type": "indoor_cycling",
+      "eventType": "uncategorized",
+      "name": "Ciclomulino z2 40'",
+      "durationMin": 16.4,
+      "calories": 127,
+      "distanceKm": 7.18,
+      "avgHr": 97,
+      "maxHr": 114,
+      "avgSpeedKmh": 26.3,
+      "maxSpeedKmh": 35.3,
+      "elevationGainM": null,
+      "elevationLossM": null,
+      "aerobicTrainingEffect": null,
+      "anaerobicTrainingEffect": null,
+      "trainingLoad": null,
+      "avgPowerW": 129,
+      "maxPowerW": 238,
+      "avgCadence": null,
+      "maxCadence": null,
+      "steps": null
+    },
     {
       "garminId": "25159961366",
       "date": "2026-11-22",
