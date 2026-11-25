@@ -1,7 +1,32 @@
 {
-  "updatedAt": "2026-11-25T08:21:26Z",
+  "updatedAt": "2026-11-25T19:11:00Z",
   "fetchWindowDays": 14,
   "activities": [
+    {
+      "garminId": "25194711521",
+      "date": "2026-11-25",
+      "startTimeLocal": "2026-11-25T13:17:55",
+      "type": "running",
+      "eventType": "uncategorized",
+      "name": "Brescia - Coach - Corsa facile 40'",
+      "durationMin": 40.0,
+      "calories": 570,
+      "distanceKm": 6.87,
+      "avgHr": 133,
+      "maxHr": 151,
+      "avgSpeedKmh": 10.3,
+      "maxSpeedKmh": 14.5,
+      "elevationGainM": 41,
+      "elevationLossM": 36,
+      "aerobicTrainingEffect": 2.6,
+      "anaerobicTrainingEffect": 0.0,
+      "trainingLoad": 57,
+      "avgPowerW": 360,
+      "maxPowerW": 526,
+      "avgCadence": 156,
+      "maxCadence": 167,
+      "steps": 6190
+    },
     {
       "garminId": "25191967450",
       "date": "2026-11-25",
